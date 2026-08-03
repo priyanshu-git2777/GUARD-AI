@@ -37,3 +37,18 @@ target/
 # Local application data
 .infrastructure-data/
 local-uploads/
+
+# Next.js generated files
+apps/web/node_modules/
+apps/web/.next/
+
+# Spring Boot generated files
+services/platform/target/
+
+# Local environment files
+.env
+apps/web/.env.local
+
+# Logs and operating-system files
+*.log
+.DS_Store
