@@ -1,0 +1,31 @@
+package com.tracedefend.platform.system;
+
+import com.tracedefend.platform.common.api.ApiResponse;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/v1/health")
+public class HealthController {
+
+    private final String applicationVersion;
+
+    public HealthController(
+            @Value("${info.app.version:development}") String applicationVersion
+    ) {
+        this.applicationVersion = applicationVersion;
+    }
+
+    @GetMapping
+    public ApiResponse<HealthResponse> health() {
+        HealthResponse response = new HealthResponse(
+                "tracedefend-platform",
+                "UP",
+                applicationVersion
+        );
+
+        return ApiResponse.success(response);
+    }
+}
